@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title id = "title2">Yes</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../styles/pagestyles.css">
+    </head>
+    <body>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="popover"]').popover() //enables popvers
+    });
+</script>
+        
+<!--#########################################################################################
+
+            Only change parameters between these lines
+-->
+
+<h1 class = "text-center" id = "title">Powerpoint Name</h1> <!-- title, do not edit innerHTML, done in JS -->
+
+<div class = "text-center">
+<button class = "btn btn-lg btn-primary" id="endSoon">Go Back</button>
+</div>
+
+<div class = "text-center ">
+    <img class = "rounded border border-dark" id="pic" src="..\slides\Emergency Evacuation\Slide1.jpg" width = "1000" height = "750">  <!-- slide picture -->
+</div>
+
+
+<div class = "text-center">
+    <button class = "btn btn-lg btn-primary" disabled = "true" id = "back">back</button> <!-- back button -->
+    <button class = "btn btn-lg btn-primary" id="next" data-toggle="popover" data-content="please complete the question below" data-placement="right">next</button> <!-- next button -->
+    <button class = "btn btn-lg btn-primary" id="end">end</button> <!-- end button -->
+    <p id = "num"></p> <!-- number countdown -->
+</div>
+
+<div id = "question" class = "container"> <!-- this div is where the question heading will go -->
+</div>
+<div id = "buttons" class = "container"> <!-- this div is where the questions will go -->
+</div>
+
+<form name = "submit" action="HTTP://localhost:8080/submit" method="post">
+    <input id="slidetitle" type="hidden" name="page" value="">
+    <input id="empid" type="hidden" name="id" value="">
+</form>
+
+
+<script>
+slides = 17; //number of total slides
+pauseTimer = 5; //number of seconds to pause
+noTimer = []; //these slides will have NO timer
+slidePath = "..\\slides\\Emergency Evacuation\\"; //change slide path
+slideTitle = "Emergency Evacuation"; //change slide title
+
+
+
+bank = { //bank of questions **you cannot put questions on slide 1**
+                1: {
+                    slide: 0,
+                    q: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et aliquet tellus. In sit amet pretium est.", 
+                    answer: 2,
+                    answers: {
+                            1: "true", 
+                            2: "false"
+                        },
+                    explanation: {
+                            1: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante.",
+                            2: "this is the correct answer"
+                    },
+                },
+                2: {
+                    slide: 0,
+                    q: "Nullam id sem velit. Vestibulum rhoncus velit nec dui faucibus, ut dapibus enim volutpat. Integer dapibus sollicitudin tellus, sed consectetur quam fermentum et. Nullam tellus nisi, elementum nec nisl in, fermentum rhoncus purus. Donec volutpat orci sem, vitae mollis massa rhoncus nec.", 
+                    answer: 3,
+                    answers: {
+                            1: "Aliquam a tempor sem.", 
+                            2: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante. Cras arcu leo, elementum in pharetra ac, pretium a orci.", 
+                            3: "Sed interdum ullamcorper nisl nec fringilla.", 
+                            4: "Cras urna justo, laoreet sit amet est eu, rhoncus luctus libero."
+                        },
+                },
+                3: {
+                    slide: 0,
+                    q: "Sed a ullamcorper orci, nec pulvinar ex. Praesent molestie fringilla efficitur.", 
+                    answer: 3,
+                    answers: {
+                            1: "Curabitur volutpat pretium lacus et egestas.", 
+                            2: "Nam ultricies sit amet enim sit amet egestas.", 
+                            3: "Maecenas ut leo iaculis, scelerisque nulla eu, sodales arcu.", 
+                            4: "Donec dignissim eu quam ut viverra."
+                        },
+                    explanation: {
+                            1: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante.",
+                            2: "this is the correct answer",
+                            3: "", 
+                            4: ""
+                    },
+                },
+        }
+
+/*
+
+            Only change parameters between these lines
+
+##########################################################################################*/
+
+
+
+next = document.getElementById("next");
+back = document.getElementById("back");
+end = document.getElementById("end");
+pic = document.getElementById("pic");
+num = document.getElementById("num");
+endSoon = document.getElementById("endSoon");
+formTitle = document.getElementById("slidetitle");
+formId = document.getElementById("empid");
+buttonDiv = document.getElementById("buttons");
+submit = document.getElementById("submit");
+currentSlide = 1; // adds and subtracts as buttons are pressed
+maxSlide = 1; // advances only when latest slide is reached
+
+formTitle.setAttribute("value", slideTitle);
+document.getElementById("title").innerHTML = slideTitle;
+document.getElementById("title2").innerHTML = slideTitle;
+end.style.display = "none";
+
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};
+
+async function timer () {
+    next.disabled = true;
+    back.disabled = true;
+    if (noTimer.indexOf(maxSlide) >= 0) {
+        //do not wait time on short slides
+    } else {
+    for (i = pauseTimer; i > 0; i--) {  //async function waits x seconds before allowing next button to enable
+        num.innerHTML = i;
+        await sleep(1000);
+        }
+    }
+    next.disabled = false;
+    back.disabled = false;
+    num.innerHTML = "";
+}
+
+function removeElementsByClass(className){  //removes element by class name
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    };
+};
+
+function checkForQuestions(currentSlide) {
+    for (t = 1; t < Object.keys(bank).length + 1; t++) { 
+        if (bank[t].slide == currentSlide) {
+            return t;
+        };
+    };
+};
+
+function setButtonLength(question) {  //set button length for length of question
+    if (question.length < 6) {
+        buttonDiv.setAttribute("style", "max-width: 200px;");
+    } else {
+        buttonDiv.setAttribute("style", "max-width: 500px;");
+    }
+}
+
+function createButtonExp(num, x) {  //try finding explanation, set popver title if found, do nothing if doesn't exist
+    try {
+        btn.setAttribute("data-content", bank[num].explanation[x])
+        btn.setAttribute("data-placement", "right")
+        btn.setAttribute("data-toggle", "popover")
+    } catch(error) {
+        return
+    }
+}
+
+$(next).popover('dispose');
+
+next.addEventListener("click", function() {  //next button click logic
+    currentSlide++;
+    removeElementsByClass("btn btn-primary btn-lg btn-block btn-secondary");
+    removeElementsByClass("btn btn-primary btn-lg btn-block btn-danger");  //removes question on next slide
+    removeElementsByClass("btn btn-primary btn-lg btn-block btn-success");
+    removeElementsByClass("questionTitle");
+    removeElementsByClass("popover fade bs-popover-right show"); //removes popovers
+    $(next).popover('hide');
+    $(next).popover('dispose');
+        if (currentSlide == slides) {
+            next.innerHTML = "next";
+            next.disabled = true;
+            end.style.display = "inline-block";
+            endSoon.disabled = true;
+        }
+        if (maxSlide < currentSlide && currentSlide !== slides && !checkForQuestions(currentSlide)) {
+            maxSlide++;
+            timer();
+        }
+        if (currentSlide > 1 && next.disabled == false) {
+            back.innerHTML = "back"
+            back.disabled = false
+        }
+        if (checkForQuestions(currentSlide)) {
+            createButtons(checkForQuestions(currentSlide));
+            next.disabled = true;
+            $(next).popover('enable');
+            $(next).popover('show');
+        }
+
+    pic.src = slidePath + "Slide" + currentSlide + ".jpg"
+    });
+
+back.addEventListener("click", function() {  //back button click logic
+    currentSlide--
+    removeElementsByClass("btn btn-primary btn-lg btn-block btn-secondary");
+    removeElementsByClass("btn btn-primary btn-lg btn-block btn-danger");  //removes question on next slide
+    removeElementsByClass("btn btn-primary btn-lg btn-block btn-success");
+    removeElementsByClass("questionTitle"); //removes question title
+    removeElementsByClass("popover fade bs-popover-right show"); //removes popovers
+    $(next).popover('hide');
+    $(next).popover('dispose');
+        if (currentSlide == 1) {
+                back.disabled = true
+        }
+        if (currentSlide > 1) {
+                back.innerHTML = "back"
+                back.disabled = false
+        }
+        if (currentSlide < slides) {
+            next.innerHTML = "next"
+            next.disabled = false
+        }
+        if (checkForQuestions(currentSlide)) {
+            createButtons(checkForQuestions(currentSlide))
+        }
+pic.src = slidePath + "Slide" + currentSlide + ".jpg"
+});
+
+end.addEventListener("click", function() { //end of slideshow logic
+    var user = prompt("please enter your employee ID number");
+    if (!user) {
+        prompt("please enter your employee ID number");
+        //close();
+    } else if (user) {
+    formId.setAttribute("value", user);
+    document.submit.submit();
+    }
+});
+
+endSoon.addEventListener("click", function() {
+    let user = confirm("are you sure you want to exit? All progress on this module will be lost.");
+        if (user) {
+            close();
+        };
+});
+
+function createButtons(num) {
+    for (o = 1; o < Object.keys(bank).length + 1; o++) {
+            if (bank[o].slide == currentSlide) { //checks for question corresponding to current slide
+                question = document.createElement("h3") //creates question heading
+                question.innerHTML = bank[num].q
+                question.className = "text-center questionTitle"
+                document.getElementById("question").appendChild(question);
+                    for (x = 1; x < Object.keys(bank[o].answers).length + 1; x++) { //Creates buttons for n number of questions
+                        btn = document.createElement("button");
+                        createButtonExp(num, x);
+                        btn.className = "btn btn-primary btn-lg btn-block btn-secondary"
+                        btn.setAttribute("id", x);
+                        btn.setAttribute("style", "margin-top: 20px;")
+                        btn.innerHTML = bank[num].answers[x];
+                        setButtonLength(bank[num].answers[x])
+                        btn.onclick = function() {
+                                if (this.id == bank[num].answer) { //checks for correct answer being clicked
+                                    console.log("Correct Answer");
+                                    $(this).popover('enable');
+                                    $(this).popover('show');
+                                    this.className = "btn btn-primary btn-lg btn-block btn-success";
+                                    next.disabled = false;
+                                    $(next).popover('hide'); //next button popver
+                                    $(next).popover('dispose');  //next button popver
+                                } else {
+                                    console.log("False answer");
+                                    $(this).popover('enable');
+                                    $(this).popover('show');
+                                    this.className = "btn btn-primary btn-lg btn-block btn-danger";
+                                }
+                            }
+                        document.getElementById("buttons").appendChild(btn); //this actually creates each button
+                    }
+            }
+        }
+}
+
+</script>
+    </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+        <title>Employee ID Search</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="css\search.css">
+        <link href="open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+        </head>
+        <body>
+                
+    <div id = "formcontainer" class = "form-group">
+        <form action="HTTP://localhost:8080/search" method="post">
+            <div class = "form-group">
+                <h1 id = "title" class = "text-center">Search</h1>
+                    <div class = "text-center">
+                                                                                                                                    <% if (results) { %>
+                            <input id = "input" class = "form-control-lg shadow-none " placeholder = "Employee ID" name="id" value = <%= results._id %> ><br>
+                                                                                                                                    <% } else { %>
+                            <input id = "input" class = "form-control-lg shadow-none " placeholder = "Employee ID" name="id" value = "" ><br>
+                                                                                                                                    <% } %>
+                    </div>
+                    <div class = "text-center">
+                            <input id = "button" type="submit" class = "btn btn-outline-secondary" value="Submit">
+                    </div>
+            </div>
+    </div>
+    </form>
+    
+                    <div id = "info" class = "mx-auto">
+                            <div class="progress">
+                                    <div id = "progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  
+
+
+                    <div id = "completed"  class = "container">
+                        <div class = "row">
+                            <div class="w-400 mx-auto">
+                                <table class="table table-hover">
+                                        <tbody>
+                                                    <% try { %>
+                                                    <% delete results._id %>
+                                                    <% const keys = Object.keys(results) %>
+                                                    <% for (const key of keys) { %>
+                                                <tr><td class = "fade"><%= key %> </td></tr>
+                                                    <% } %>
+                                                    
+                                                </tbody>
+                                            </table>
+                            </div>
+
+
+                                
+                                <div class="w-30">
+                                    <table class="table table-hover">
+                                        <tbody>
+                                                    <% const values = Object.values(results) %>
+                                                    <% for (const value of values) { %>
+                                                    <% if (value === true) { %>
+                                                <tr><td class = "fade"><span class="oi oi-circle-check"></span></td></tr>
+                                                    <% } else { %>
+                                                <tr><td class = "fade"><span class="oi oi-circle-x"></span></td></tr>
+                                                    <% } %>
+                                                    <% } %>
+                                                    <% } catch { %>
+                                                        <p>user not found</p>
+                                                    <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+            
+        
+        <script>
+        function sleep(ms) { //sleep function
+            return new Promise(resolve => setTimeout(resolve, ms));
+        };
+
+        let li = document.getElementsByClassName("fade");
+        let complete = document.getElementsByClassName("oi oi-circle-check");
+        let progress = document.getElementById("progress");
+        let x = 0
+
+        async function createLi () {
+            for (i = 0; i < li.length; i++) {
+                li[i].setAttribute("class", "fade show");
+                await sleep(150);
+            };
+        progressBar();
+        }
+
+async function progressBar () {
+    for (i = 0; i <complete.length; i++) {
+        progress.setAttribute("style", "width: " + (x += 16.6666) + "%")
+        await sleep(150);
+    }
+}
+
+        async function fadeIn() {
+        await sleep(400);
+        createLi();
+        }
+        
+        fadeIn();
+
+        //console.log(Object.keys(results))
+
+</script>
+        </body>
+    </html>

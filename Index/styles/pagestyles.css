@@ -1,0 +1,25 @@
+body {
+    background-image: linear-gradient(to left, #c6c6c6, #c7c8c7, #c9c9c9, #cacbca, #cccccc);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+button {
+    margin-top: 30px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+h1 {
+    padding: .5rem;
+}
+
+#buttons {
+    padding-bottom: 120px;
+}
+
+#endSoon {
+    margin-bottom: 30px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+        <title>Employee ID Search</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/search.css">
+        </head>
+        <body>
+    <div id = "formcontainer" class = "form-group">
+        <form action="HTTP://localhost:8080/search" method="post">
+            <div class = "form-group">
+                <h1 id = "title" class = "text-center">Search</h1>
+                    <div class = "text-center">
+                            <input id = "input" class = "form-control-lg shadow-none " placeholder = "Employee ID" name="id"><br>
+                    </div>
+                    <div class = "text-center">
+                            <input id = "button" type="submit" class = "btn btn-outline-secondary" value="Submit">
+                    </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function sleep(ms) { //sleep function
+            return new Promise(resolve => setTimeout(resolve, ms));
+        };
+
+        let li = document.getElementsByClassName("list-group-item");
+
+        async function createLi () {
+            for (i = 0; i < li.length; i++) {
+                li[i].setAttribute("class", "list-group-item tab-pane fade show");
+                await sleep(80);
+            };
+        }
+        createLi();
+
+
+        console.log(Object.keys(results))
+
+    </script>
+
+        </body>
+    </html>

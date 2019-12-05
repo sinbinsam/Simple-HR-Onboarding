@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+        <title>Employee ID Search</title>
+        <link rel="stylesheet" href="css\success.css">
+        </head>
+        <body>
+
+            <h1>There was a problem accessing the database, please notify Eric</h1>
+            <p>This window will close in 4 seconds</p>
+
+            
+        
+        <script>
+        function sleep(ms) { //sleep function
+            return new Promise(resolve => setTimeout(resolve, ms));
+        };
+
+
+        async function closeWindow () {
+            await sleep(4000);
+            close();
+        }
+        closeWindow();
+
+
+</script>
+        </body>
+    </html>

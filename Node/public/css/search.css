@@ -1,0 +1,41 @@
+#formcontainer {
+    justify-content: center;
+    padding-top: 5rem;
+}
+
+#button {
+    margin-top: 12px
+}
+
+#title {
+    margin-bottom: 12px;
+}
+
+.glowing-border {
+    border: 2px solid #dadada;
+    border-radius: 7px;
+}
+
+.glowing-border:focus { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+input, textarea, button {outline: none; }
+
+#info {
+    text-align: center;
+    padding-right: 0px;
+    width: 200px;
+    justify-content: center;
+}
+
+.list-group {
+    padding: 0px;
+    padding-top: 20px;
+}
+
+#completed {
+    padding-top: 20px;
+}
