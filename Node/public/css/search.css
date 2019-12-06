@@ -39,3 +39,11 @@ input, textarea, button {outline: none; }
 #completed {
     padding-top: 20px;
 }
+
+.oi-circle-check {
+    color: green;
+}
+
+.oi-circle-x {
+    color: red;
+}
