@@ -24,18 +24,18 @@
                     </div>
             </div>
     </div>
-    </form>
+
     
-                    <div id = "info" class = "mx-auto">
-                            <div class="progress">
-                                    <div id = "progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                  
-
-
+    </form>
+        <div class="progress mx-auto">
+            <div id = "progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+                <div id = "info">
                     <div id = "completed"  class = "container">
-                        <div class = "row">
-                            <div class="w-400 mx-auto">
+                        <div class = "align-items-center">
+                        <div class = "row justify-content-center">
+                            
+                            <div>
                                 <table class="table table-hover">
                                         <tbody>
                                                     <% try { %>
@@ -51,7 +51,7 @@
 
 
                                 
-                                <div class="w-30">
+                                <div>
                                     <table class="table table-hover">
                                         <tbody>
                                                     <% const values = Object.values(results) %>
@@ -68,6 +68,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,7 +95,7 @@
 
 async function progressBar () {
     for (i = 0; i <complete.length; i++) {
-        progress.setAttribute("style", "width: " + (x += 16.6666) + "%")
+        progress.setAttribute("style", "width: " + (x += 10) + "%")
         await sleep(150);
     }
 }

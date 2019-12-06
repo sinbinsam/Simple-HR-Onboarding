@@ -27,8 +27,20 @@ input, textarea, button {outline: none; }
 #info {
     text-align: center;
     padding-right: 0px;
-    width: 200px;
+
     justify-content: center;
+}
+
+.progress {
+    width: 250px;
+}
+
+#names {
+    margin-right: 20px;
+}
+
+#complete {
+    width: 400px;
 }
 
 .list-group {
