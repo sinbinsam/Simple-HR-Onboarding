@@ -58,6 +58,46 @@ app.post('/search', function(req, res) {
 // POST http://localhost:8080/api/users
 // parameters sent with 
 
+app.get('/user/:id', (req, res) => {
+
+
+  console.log("Employee ID not found, adding to database")
+  collection.insertOne({_id: user_id}, (err, result) => {
+    if (err) {
+      console.log("there was a problem adding employee to database");
+        res.render('failure');
+            console.log(err);
+    } else {
+        console.log("Employee " + user_id + " has been successfully added to database");
+            conf.findOne({_id: 'pages'}, (err, item) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log(item);
+                        delete item._id
+                            collection.updateOne({_id: user_id}, {'$set': item}, (err, item) => {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+
+                                    collection.updateOne({_id: user_id}, {'$set': obj}, (err, item) => {
+                                        if (err) {
+                                            console.log("There was a problem updating the database");
+                                                res.render('failure');
+                                                    console.log(err);
+                                        } else {
+                                            console.log("Employee " + user_id + " has completed " + page + ", successfully added to database")
+                                                res.render('success');
+                                        }
+                                    });
+                                }
+                            })
+                        }
+                });
+    }
+  })
+})
+
 app.post('/submit', function(req, res) {
   var user_id = req.body.id;
   var token = req.body.token;
@@ -95,41 +135,7 @@ collection.findOne({_id: user_id}, (err, item) => {
     })
 
   } else if (item == null){
-    console.log("Employee ID not found, adding to database")
-      collection.insertOne({_id: user_id}, (err, result) => {
-        if (err) {
-          console.log("there was a problem adding employee to database");
-            res.render('failure');
-                console.log(err);
-        } else {
-            console.log("Employee " + user_id + " has been successfully added to database");
-                conf.findOne({_id: 'pages'}, (err, item) => {
-                    if (err) {
-                        console.log(err)
-                    } else {
-                        console.log(item);
-                            delete item._id
-                                collection.updateOne({_id: user_id}, {'$set': item}, (err, item) => {
-                                    if (err) {
-                                        console.log(err);
-                                    } else {
 
-                                        collection.updateOne({_id: user_id}, {'$set': obj}, (err, item) => {
-                                            if (err) {
-                                                console.log("There was a problem updating the database");
-                                                    res.render('failure');
-                                                        console.log(err);
-                                            } else {
-                                                console.log("Employee " + user_id + " has completed " + page + ", successfully added to database")
-                                                    res.render('success');
-                                            }
-                                        });
-                                    }
-                                })
-                            }
-                    });
-        }
-      })
 
 
 
