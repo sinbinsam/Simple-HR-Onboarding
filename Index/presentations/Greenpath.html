@@ -50,7 +50,7 @@
 
 
 <script>
-slides = 33; //number of total slides
+slides = 32; //number of total slides
 pauseTimer = 5; //number of seconds to pause
 noTimer = []; //these slides will have NO timer
 slidePath = "..\\slides\\Greenpath\\"; //change slide path
@@ -60,45 +60,103 @@ slideTitle = "Greenpath"; //change slide title
 
 bank = { //bank of questions **you cannot put questions on slide 1**
                 1: {
-                    slide: 0,
-                    q: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et aliquet tellus. In sit amet pretium est.", 
-                    answer: 2,
+                    slide: 25,
+                    q: "Spills happen - which of these is NOT the proper procedure?", 
+                    answer: 4,
                     answers: {
-                            1: "true", 
-                            2: "false"
+                            1: "Call 9-1-1 if the spill is large or unsafe", 
+                            2: "Contact management IMMEDIATELY",
+                            3: "If it is sage use PPE, and be careful",
+                            4: "Put a towel down until you can get to it"
                         },
                     explanation: {
-                            1: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante.",
-                            2: "this is the correct answer"
+                            1: "",
+                            2: "",
+                            3: "",
+                            4: "Correct! Never leave a spill unattended. It only takes a split second for someone to get seriously hurt. Always use dry clean-up methods and try to contain the spill using absorbent material"
                     },
                 },
                 2: {
-                    slide: 0,
-                    q: "Nullam id sem velit. Vestibulum rhoncus velit nec dui faucibus, ut dapibus enim volutpat. Integer dapibus sollicitudin tellus, sed consectetur quam fermentum et. Nullam tellus nisi, elementum nec nisl in, fermentum rhoncus purus. Donec volutpat orci sem, vitae mollis massa rhoncus nec.", 
-                    answer: 3,
+                    slide: 26,
+                    q: "Flourescent lamps (tubes and CFL's) contain a small amount of mercury. Why is it important that they are properly recycled?", 
+                    answer: 2,
                     answers: {
-                            1: "Aliquam a tempor sem.", 
-                            2: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante. Cras arcu leo, elementum in pharetra ac, pretium a orci.", 
-                            3: "Sed interdum ullamcorper nisl nec fringilla.", 
-                            4: "Cras urna justo, laoreet sit amet est eu, rhoncus luctus libero."
+                            1: "It's not that important, they're jsut light bulbs", 
+                            2: "Mercury is a dangerous chemical that can be released into the environment and cause injury to humans and animals", 
+                            3: "The glass from the bulbs could cut somebody", 
+                            4: "Because bulbs are expensive"
                         },
                 },
                 3: {
-                    slide: 0,
-                    q: "Sed a ullamcorper orci, nec pulvinar ex. Praesent molestie fringilla efficitur.", 
-                    answer: 3,
+                    slide: 27,
+                    q: "It's okay to mix old pool chemicals with fresh chemicals especially since they're the same type", 
+                    answer: 2,
                     answers: {
-                            1: "Curabitur volutpat pretium lacus et egestas.", 
-                            2: "Nam ultricies sit amet enim sit amet egestas.", 
-                            3: "Maecenas ut leo iaculis, scelerisque nulla eu, sodales arcu.", 
-                            4: "Donec dignissim eu quam ut viverra."
+                            1: "True", 
+                            2: "False"
                         },
                     explanation: {
-                            1: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante.",
-                            2: "this is the correct answer",
+                            1: "",
+                            2: "Correct! Pool chemicals are extremely toxic. Do not mix them even if they are the same type and keep flammable liquids, ignition sources and clutter away from pool chemicals. If you need to dispose of any pool chemicals please contact your Environmental Manager for assistance"
+                    },
+                },
+                4: {
+                    slide: 28,
+                    q: "Styrofoam can be easily recycled", 
+                    answer: 2,
+                    answers: {
+                            1: "True", 
+                            2: "False"
+                        },
+                    explanation: {
+                            1: "",
+                            2: "Correct! Recyclable items include cardboard, plastic, glass, aluminum, steel, paper, kitchen oil, printer cartridges, electronics, batteries and lamps"
+                    },
+                },
+                5: {
+                    slide: 29,
+                    q: "What are the proper characteristics of a serviceable recycling container?", 
+                    answer: 4,
+                    answers: {
+                            1: "Leak proof", 
+                            2: "Closeable lid, will not tip over easily",
+                            3: "Properly labeled 'universal waste'", 
+                            4: "All of the above"
+                        },
+                    explanation: {
+                            1: "", 
+                            2: "",
+                            3: "", 
+                            4: "Correct! Universal wastes are not to be stored for more than one year. When the container becomes full or 11 months has elapsed from the accumulation date on the box, contact your Environmental Manager to schedule a pickup"
+                    },
+                },
+                6: {
+                    slide: 30,
+                    q: "Which of these is NOT the best way to prevent fats, oils and grease (FOG) from clogging the sewer system?", 
+                    answer: 1,
+                    answers: {
+                            1: "Pour boiling water down the drain first, then the grease", 
+                            2: "Dry clean-up by wiping pots, pans and work areas with a dry towel prior to washing",
+                            3: "Avoid using the garbage disposal-place greasy food directly in the trash", 
+                            4: "Do not rinse mats over or near storm drains"
+                        },
+                    explanation: {
+                            1: "Correct! The easiest way to prevent overflows of raw sewage due to grease problems is to keep this material out of the sewer systems in the first place. Sanitary sewer overflows pollute the enironment and present a health hazard to people, pets and wildlife", 
+                            2: "",
                             3: "", 
                             4: ""
                     },
+                },
+                7: {
+                    slide: 31,
+                    q: "What are the four steps of the GreenPath Process?", 
+                    answer: 3,
+                    answers: {
+                            1: "See, Hear, Speak, Listen", 
+                            2: "Reduce, Recycle, Reuse",
+                            3: "Plan, Do, Check, Act", 
+                            4: "All of these"
+                        },
                 },
         }
 
@@ -127,7 +185,7 @@ formTitle.setAttribute("value", slideTitle);
 document.getElementById("title").innerHTML = slideTitle;
 document.getElementById("title2").innerHTML = slideTitle;
 end.style.display = "none";
-
+document.addEventListener('contextmenu', event => event.preventDefault()); //disable right click
 
 
 function sleep(ms) {

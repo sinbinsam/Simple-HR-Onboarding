@@ -50,7 +50,7 @@
 
 
 <script>
-slides = 37; //number of total slides
+slides = 34; //number of total slides
 pauseTimer = 5; //number of seconds to pause
 noTimer = []; //these slides will have NO timer
 slidePath = "..\\slides\\PCI\\"; //change slide path
@@ -60,42 +60,42 @@ slideTitle = "PCI"; //change slide title
 
 bank = { //bank of questions **you cannot put questions on slide 1**
                 1: {
-                    slide: 0,
-                    q: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et aliquet tellus. In sit amet pretium est.", 
+                    slide: 9,
+                    q: "It is acceptable to always use a manual method of credit card transaction processing that imprints the cards", 
                     answer: 2,
                     answers: {
                             1: "true", 
                             2: "false"
                         },
                     explanation: {
-                            1: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante.",
-                            2: "this is the correct answer"
+                        1: "",
+                        2: "Manual credit card transactions are only to be used when no electronic means exist",
+                        3: "", 
+                        4: ""
                     },
                 },
                 2: {
-                    slide: 0,
-                    q: "Nullam id sem velit. Vestibulum rhoncus velit nec dui faucibus, ut dapibus enim volutpat. Integer dapibus sollicitudin tellus, sed consectetur quam fermentum et. Nullam tellus nisi, elementum nec nisl in, fermentum rhoncus purus. Donec volutpat orci sem, vitae mollis massa rhoncus nec.", 
-                    answer: 3,
+                    slide: 15,
+                    q: "How many steps are there for manual transactions", 
+                    answer: 4,
                     answers: {
-                            1: "Aliquam a tempor sem.", 
-                            2: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante. Cras arcu leo, elementum in pharetra ac, pretium a orci.", 
-                            3: "Sed interdum ullamcorper nisl nec fringilla.", 
-                            4: "Cras urna justo, laoreet sit amet est eu, rhoncus luctus libero."
+                            1: "1", 
+                            2: "3", 
+                            3: "4", 
+                            4: "5"
                         },
                 },
                 3: {
-                    slide: 0,
-                    q: "Sed a ullamcorper orci, nec pulvinar ex. Praesent molestie fringilla efficitur.", 
-                    answer: 3,
+                    slide: 26,
+                    q: "It is acceptable to share my passwords with my coworkers", 
+                    answer: 2,
                     answers: {
-                            1: "Curabitur volutpat pretium lacus et egestas.", 
-                            2: "Nam ultricies sit amet enim sit amet egestas.", 
-                            3: "Maecenas ut leo iaculis, scelerisque nulla eu, sodales arcu.", 
-                            4: "Donec dignissim eu quam ut viverra."
+                            1: "True", 
+                            2: "False"
                         },
                     explanation: {
-                            1: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante.",
-                            2: "this is the correct answer",
+                            1: "",
+                            2: "Correct! Users are accountable for all activity and access that occurs under their accounts",
                             3: "", 
                             4: ""
                     },
@@ -127,7 +127,7 @@ formTitle.setAttribute("value", slideTitle);
 document.getElementById("title").innerHTML = slideTitle;
 document.getElementById("title2").innerHTML = slideTitle;
 end.style.display = "none";
-
+document.addEventListener('contextmenu', event => event.preventDefault()); //disable right click
 
 
 function sleep(ms) {

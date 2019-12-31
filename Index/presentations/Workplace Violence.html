@@ -50,7 +50,7 @@
 
 
 <script>
-slides = 36; //number of total slides
+slides = 28; //number of total slides
 pauseTimer = 5; //number of seconds to pause
 noTimer = []; //these slides will have NO timer
 slidePath = "..\\slides\\Workplace Violence\\"; //change slide path
@@ -60,45 +60,58 @@ slideTitle = "Workplace Violence"; //change slide title
 
 bank = { //bank of questions **you cannot put questions on slide 1**
                 1: {
-                    slide: 0,
-                    q: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et aliquet tellus. In sit amet pretium est.", 
+                    slide: 16,
+                    q: "The fire alarm system is NOT equipped with which of the following:", 
                     answer: 2,
                     answers: {
-                            1: "true", 
-                            2: "false"
+                            1: "Audio Indicator", 
+                            2: "Olfactory Indicator",
+                            3: "Visual Indicator",
+                            4: "All of the above"
                         },
-                    explanation: {
-                            1: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante.",
-                            2: "this is the correct answer"
-                    },
                 },
                 2: {
-                    slide: 0,
-                    q: "Nullam id sem velit. Vestibulum rhoncus velit nec dui faucibus, ut dapibus enim volutpat. Integer dapibus sollicitudin tellus, sed consectetur quam fermentum et. Nullam tellus nisi, elementum nec nisl in, fermentum rhoncus purus. Donec volutpat orci sem, vitae mollis massa rhoncus nec.", 
+                    slide: 17,
+                    q: "Which of the following is NOT the proper procedure to evacuate the facility?", 
                     answer: 3,
                     answers: {
-                            1: "Aliquam a tempor sem.", 
-                            2: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante. Cras arcu leo, elementum in pharetra ac, pretium a orci.", 
-                            3: "Sed interdum ullamcorper nisl nec fringilla.", 
-                            4: "Cras urna justo, laoreet sit amet est eu, rhoncus luctus libero."
+                            1: "Do not leave the property unless you directed to do so", 
+                            2: "Assist others in exiting only as you feel comfortable", 
+                            3: "Gather your iPhone, keys and laptop so you don't forget them", 
+                            4: "GO to the meeting point, the fireman's building at the end of the employee parking lot",
+                            5: "Using the closest and safest door, calmly exit the building"
                         },
                 },
                 3: {
-                    slide: 0,
-                    q: "Sed a ullamcorper orci, nec pulvinar ex. Praesent molestie fringilla efficitur.", 
+                    slide: 18,
+                    q: "In an evacuation, it's best to just follow everybody else. No need to know where the meeting point is.", 
+                    answer: 2,
+                    answers: {
+                            1: "True", 
+                            2: "False"
+                        },
+                },
+                4: {
+                    slide: 19,
+                    q: "In the event you are in a man trap during an emergency and the doors will not open, you will need to:", 
                     answer: 3,
                     answers: {
-                            1: "Curabitur volutpat pretium lacus et egestas.", 
-                            2: "Nam ultricies sit amet enim sit amet egestas.", 
-                            3: "Maecenas ut leo iaculis, scelerisque nulla eu, sodales arcu.", 
-                            4: "Donec dignissim eu quam ut viverra."
+                            1: "Kick the door down", 
+                            2: "Scream and yell until someone hears you",
+                            3: "Pull the handle down",
+                            4: "Huff and Puff and blow it down"
                         },
-                    explanation: {
-                            1: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante.",
-                            2: "this is the correct answer",
-                            3: "", 
-                            4: ""
-                    },
+                },
+                5: {
+                    slide: 20,
+                    q: "If you're working with food and an emergency occurs, you should:", 
+                    answer: 4,
+                    answers: {
+                            1: "Immediately exit the facility in a calm manner using the closest and safest exit", 
+                            2: "Turn off the grill and/or the deep fryers",
+                            3: "If time allows, remove food from the grill and/or deep fryers",
+                            4: "All of the above"
+                        },
                 },
         }
 
@@ -127,7 +140,7 @@ formTitle.setAttribute("value", slideTitle);
 document.getElementById("title").innerHTML = slideTitle;
 document.getElementById("title2").innerHTML = slideTitle;
 end.style.display = "none";
-
+document.addEventListener('contextmenu', event => event.preventDefault()); //disable right click
 
 
 function sleep(ms) {

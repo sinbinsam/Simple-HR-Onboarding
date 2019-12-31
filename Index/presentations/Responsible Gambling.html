@@ -60,45 +60,24 @@ slideTitle = "Responsible Gambling"; //change slide title
 
 bank = { //bank of questions **you cannot put questions on slide 1**
                 1: {
-                    slide: 0,
-                    q: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et aliquet tellus. In sit amet pretium est.", 
+                    slide: 4,
+                    q: "I can play at another DNC owned property in NY as long as I am out of my uniform and I tell the guard I work at another facility", 
                     answer: 2,
                     answers: {
                             1: "true", 
                             2: "false"
                         },
-                    explanation: {
-                            1: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante.",
-                            2: "this is the correct answer"
-                    },
                 },
                 2: {
-                    slide: 0,
-                    q: "Nullam id sem velit. Vestibulum rhoncus velit nec dui faucibus, ut dapibus enim volutpat. Integer dapibus sollicitudin tellus, sed consectetur quam fermentum et. Nullam tellus nisi, elementum nec nisl in, fermentum rhoncus purus. Donec volutpat orci sem, vitae mollis massa rhoncus nec.", 
-                    answer: 3,
+                    slide: 8,
+                    q: "If I see a minor on the gaming floor, I should", 
+                    answer: 1,
                     answers: {
-                            1: "Aliquam a tempor sem.", 
-                            2: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante. Cras arcu leo, elementum in pharetra ac, pretium a orci.", 
-                            3: "Sed interdum ullamcorper nisl nec fringilla.", 
-                            4: "Cras urna justo, laoreet sit amet est eu, rhoncus luctus libero."
+                            1: "Contact Security", 
+                            2: "Ignore it", 
+                            3: "Tell my coworkers about it later on break", 
+                            4: "Take a picture of the person gaming"
                         },
-                },
-                3: {
-                    slide: 0,
-                    q: "Sed a ullamcorper orci, nec pulvinar ex. Praesent molestie fringilla efficitur.", 
-                    answer: 3,
-                    answers: {
-                            1: "Curabitur volutpat pretium lacus et egestas.", 
-                            2: "Nam ultricies sit amet enim sit amet egestas.", 
-                            3: "Maecenas ut leo iaculis, scelerisque nulla eu, sodales arcu.", 
-                            4: "Donec dignissim eu quam ut viverra."
-                        },
-                    explanation: {
-                            1: "Praesent justo lacus, accumsan vel tellus tempus, condimentum consectetur ante.",
-                            2: "this is the correct answer",
-                            3: "", 
-                            4: ""
-                    },
                 },
         }
 
@@ -127,7 +106,7 @@ formTitle.setAttribute("value", slideTitle);
 document.getElementById("title").innerHTML = slideTitle;
 document.getElementById("title2").innerHTML = slideTitle;
 end.style.display = "none";
-
+document.addEventListener('contextmenu', event => event.preventDefault()); //disable right click
 
 
 function sleep(ms) {
