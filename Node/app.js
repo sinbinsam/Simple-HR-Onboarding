@@ -64,9 +64,9 @@ app.post('/search', function(req, res) {
 
   collection.findOne({_id: user_id}, (err, item) => {
     if (item == null) {
-      res.render('searchresults', {results: null})
+      res.render('searchresults', {results: null, serverAddr: serverAddr})
     } else if(item) {
-      res.render('searchresults', {results: item})
+      res.render('searchresults', {results: item, serverAddr: serverAddr})
     }
   })
 
