@@ -6,7 +6,7 @@ var express = require('express');
 var app = express();
 const mongo = require('mongodb').MongoClient
 const url = 'mongodb://localhost:27017'
-const serverAddr = 'HTTP://localhost:8080'
+const serverAddr = 'HTTP://GEFL-HRSERV:8080'
 
 app.set('view engine', 'ejs');
 
@@ -40,7 +40,7 @@ app.get('/', function(req, res) {
 
 
 app.get('/search', function(req, res) {
-  res.render('search')
+  res.render('search', {serverAddr: serverAddr})
 });
 
 app.post('/search', function(req, res) {
@@ -64,6 +64,7 @@ app.post('/search', function(req, res) {
 
   collection.findOne({_id: user_id}, (err, item) => {
     if (item == null) {
+      console.log(serverAddr)
       res.render('searchresults', {results: null, serverAddr: serverAddr})
     } else if(item) {
       res.render('searchresults', {results: item, serverAddr: serverAddr})
