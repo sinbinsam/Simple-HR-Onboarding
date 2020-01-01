@@ -6,7 +6,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="../styles/pagestyles.css">
+        <link rel="stylesheet" href="../css/pagestyles.css">
     </head>
     <body>
 <script type="text/javascript">
@@ -27,14 +27,22 @@
 </div>
 
 <div class = "text-center ">
-    <img class = "rounded border border-dark" id="pic" src="..\slides\Responsible Gambling\Slide1.jpg" width = "1000" height = "750">  <!-- slide picture -->
+        <video
+                id="video-active"
+                class="video-active"
+                width="1000"
+                height="568">
+                <source src="../slides/Run Hide Fight/RUN HIDE FIGHT.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+        </video>
 </div>
 
 
 <div class = "text-center">
     <button class = "btn btn-lg btn-primary" disabled = "true" id = "back">back</button> <!-- back button -->
-    <button class = "btn btn-lg btn-primary" id="next" data-toggle="popover" data-content="please complete the question below" data-placement="right">next</button> <!-- next button -->
-    <button class = "btn btn-lg btn-primary" id="end">end</button> <!-- end button -->
+    <button class = "btn btn-lg btn-primary" disabled = "true" id="next" data-toggle="popover" data-content="please complete the question below" data-placement="right">next</button> <!-- next button -->
+    <button class = "btn btn-lg btn-primary" id = "play" data-toggle = "popover" data-content = "please complete the video to submit your employee ID">Play/Pause</button>
+    <button class = "btn btn-lg btn-primary" data-toggle = "popover" data-content = "click end to submit your ID" id="end">end</button> <!-- end button -->
     <p id = "num"></p> <!-- number countdown -->
 </div>
 
@@ -43,18 +51,18 @@
 <div id = "buttons" class = "container"> <!-- this div is where the questions will go -->
 </div>
 
-<form name = "submit" action="HTTP://gefl-hrserv:8080/submit" method="post">
+<form name = "submit" action="<%= serverAddr %>/submit" method="post">
     <input id="slidetitle" type="hidden" name="page" value="">
     <input id="empid" type="hidden" name="id" value="">
 </form>
 
 
 <script>
-slides = 9; //number of total slides
+slides = 3; //number of total slides
 pauseTimer = 5; //number of seconds to pause
 noTimer = []; //these slides will have NO timer
-slidePath = "..\\slides\\Responsible Gambling\\"; //change slide path
-slideTitle = "Responsible Gambling"; //change slide title
+slidePath = "..\\slides\\Workplace Violence\\"; //change slide path
+slideTitle = "Run Hide Fight"; //change slide title
 
 
 
@@ -120,6 +128,8 @@ formTitle = document.getElementById("slidetitle");
 formId = document.getElementById("empid");
 buttonDiv = document.getElementById("buttons");
 submit = document.getElementById("submit");
+play = document.getElementById("play");
+video = document.getElementById("video-active");
 currentSlide = 1; // adds and subtracts as buttons are pressed
 maxSlide = 1; // advances only when latest slide is reached
 
@@ -127,7 +137,41 @@ formTitle.setAttribute("value", slideTitle);
 document.getElementById("title").innerHTML = slideTitle;
 document.getElementById("title2").innerHTML = slideTitle;
 end.style.display = "none";
+next.style.display = "none";
+back.style.display = "none";
 
+
+$(document).ready(function(){
+  $("#video-active").on(
+    "timeupdate", 
+    function(event){
+      onTrackedVideoFrame(this.currentTime, this.duration);
+    });
+});
+
+document.addEventListener('contextmenu', event => event.preventDefault()); //disable right click
+
+function onTrackedVideoFrame(currentTime, duration){
+    $("#current").text(currentTime); //Change #current to currentTime
+    $("#duration").text(duration)
+    if (currentTime > duration - 20) {
+        end.style.display = "inline-block";
+        endSoon.disabled = true;
+        $(play).popover('disable');
+        $(play).popover('hide');
+    } else {
+        $(play).popover('enable');
+        $(play).popover('show');
+    }
+}
+
+play.addEventListener("click", function() {
+    if (video.paused) {
+        video.play()
+    } else {
+        video.pause()
+    }
+});
 
 
 function sleep(ms) {
@@ -145,8 +189,8 @@ async function timer () {
         await sleep(1000);
         }
     }
-    next.disabled = false;
-    back.disabled = false;
+    //next.disabled = false;
+    //back.disabled = false;
     num.innerHTML = "";
 }
 

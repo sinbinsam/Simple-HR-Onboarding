@@ -6,7 +6,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="../styles/pagestyles.css">
+        <link rel="stylesheet" href="../css/pagestyles.css">
     </head>
     <body>
 <script type="text/javascript">
@@ -27,7 +27,7 @@
 </div>
 
 <div class = "text-center ">
-    <img class = "rounded border border-dark" id="pic" src="..\slides\History and Values\Slide1.jpg" width = "1000" height = "750">  <!-- slide picture -->
+    <img class = "rounded border border-dark" id="pic" src="..\slides\Lottery Regulations\Slide1.jpg" width = "1000" height = "750">  <!-- slide picture -->
 </div>
 
 
@@ -43,18 +43,18 @@
 <div id = "buttons" class = "container"> <!-- this div is where the questions will go -->
 </div>
 
-<form name = "submit" action="HTTP://gefl-hrserv:8080/submit" method="post">
+<form name = "submit" action="<%= serverAddr %>/submit" method="post">
     <input id="slidetitle" type="hidden" name="page" value="">
     <input id="empid" type="hidden" name="id" value="">
 </form>
 
 
 <script>
-slides = 35; //number of total slides
+slides = 6; //number of total slides
 pauseTimer = 5; //number of seconds to pause
 noTimer = []; //these slides will have NO timer
-slidePath = "..\\slides\\History and Values\\"; //change slide path
-slideTitle = "History and Values"; //change slide title
+slidePath = "..\\slides\\Lottery Regulations\\"; //change slide path
+slideTitle = "Lottery Regulations"; //change slide title
 
 
 
@@ -127,7 +127,7 @@ formTitle.setAttribute("value", slideTitle);
 document.getElementById("title").innerHTML = slideTitle;
 document.getElementById("title2").innerHTML = slideTitle;
 end.style.display = "none";
-
+document.addEventListener('contextmenu', event => event.preventDefault()); //disable right click
 
 
 function sleep(ms) {

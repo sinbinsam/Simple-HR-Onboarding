@@ -9,7 +9,7 @@
         <body>
                 
     <div id = "formcontainer" class = "form-group">
-        <form action="HTTP://gefl-hrserv:8080/search" method="post">
+        <form action="HTTP://localhost:8080/search" method="post">
             <div class = "form-group">
                 <h1 id = "title" class = "text-center">Search</h1>
                     <div class = "text-center">
@@ -95,7 +95,7 @@
 
 async function progressBar () {
     for (i = 0; i <complete.length; i++) {
-        progress.setAttribute("style", "width: " + (x += 10) + "%")
+        progress.setAttribute("style", "width: " + (x += 11.1111111) + "%")
         await sleep(150);
     }
 }
